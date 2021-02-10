@@ -1,3 +1,8 @@
+# Project
+**/output/*
+untracked*
+
 # Python
 __pycache__
 *.egg-info
+.venv

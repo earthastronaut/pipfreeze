@@ -1,0 +1,20 @@
+version: "3.8"
+
+x-app: &x-app
+  command: tests/run_tests.sh
+  working_dir: /app
+  volumes:
+    - ./:/app
+
+services:
+  app-test-py:
+    image: python:buster
+    <<: *x-app
+
+  app-test-py3.8:
+    image: python:3.8-buster
+    <<: *x-app
+
+  app-test-py2.7.11:
+    image: python:2.7.11
+    <<: *x-app
