@@ -28,12 +28,11 @@ setup(
     entry_points={
         'console_scripts': ['pipfreeze = pipfreeze:main']
     },
-    python_requires='>=2.6',
+    python_requires='>=3',
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 2',
     ]
 )

@@ -2,12 +2,20 @@
 import json
 import sys
 from collections import OrderedDict
-from pip._internal.commands.list import ListCommand
-from pip._internal.commands.freeze import DEV_PKGS
-from pip._internal.operations.freeze import FrozenRequirement
 
+try:
+    # python3
+    from pip._internal.commands.list import ListCommand
+    from pip._internal.commands.freeze import DEV_PKGS
+    from pip._internal.operations.freeze import FrozenRequirement
+except ImportError:
+    # python2
+    from pip.commands import ListCommand
+    from pip import FrozenRequirement
+    DEV_PKGS = {'pip', 'setuptools', 'distribute', 'wheel'}
+    raise NotImplementedError("This version doesn't work")
 
-__version__ = '1.0.0'
+__version__ = '1.0.1'
 
 
 def pip_list_packages(*args):
@@ -73,7 +81,7 @@ def _recursive_requires_freeze(packages, key, frozen_packages, depth=0):
 
     lines = [indent + l for l in str(freeze).rstrip().split('\n')]
 
-    for require_key in pkg._requires:
+    for require_key in sorted(pkg._requires):
         lines.extend(
             _recursive_requires_freeze(
                 packages, require_key, frozen_packages, depth=depth+1
@@ -99,7 +107,9 @@ def get_requirements_freeze(packages, skip=None):
     frozen_packages = set()
     lines = []
 
-    for key, pkg in packages.items():
+    keys = sorted(list(packages.keys()))
+    for key in keys:
+        pkg = packages[key]
         # skip if not root module
         if len(pkg._required_by) > 0:
             continue
