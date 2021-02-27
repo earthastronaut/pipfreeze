@@ -55,7 +55,7 @@ class Requirement(dict):
         self.requirement_version = requirement_version
         self.required_children = required_children or []
         self.required_parents = required_parents or []
-        super().__init__(
+        super(self.__class__, self).__init__(
             name=self.name,
             requirement_version=self.requirement_version,
             required_children=self.required_children,
@@ -249,7 +249,7 @@ def _get_formatted_requirements_recursive(requirements, recursive_kws=None, **kw
                     level=level + 1,
                     included=included,
                 ),
-                **kws,
+                **kws
             )
             lines.extend(children_lines)
             included = included.union(children_included)
