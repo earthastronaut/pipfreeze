@@ -21,7 +21,7 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 
-__version__ = '1.0.1'
+__version__ = "2.0.0"
 
 
 def call_split(cmd):
@@ -337,7 +337,17 @@ def cli():
         action="store_true",
         help="Shortcut for loglevel=DEBUG",
     )
+    parser.add_argument(
+        "--version",
+        action="store_true",
+        help="Display version",
+    )    
     pargs = parser.parse_args()
+
+    if pargs.version:
+        sys.stdout.write(__version__)
+        sys.stdout.write("\n")
+        sys.exit(0)
 
     loglevel = pargs.loglevel or ("DEBUG" if pargs.verbose else "")
     if loglevel:

@@ -1,6 +1,7 @@
 .PHONY: build build-local test
 
 SHELL=/bin/bash
+LATEST_TAG=$(shell git describe --abbrev=0 --tags)
 
 build:
 	./activate.sh
@@ -17,6 +18,12 @@ test:
 
 bash:
 	docker-compose run --rm py bash
+
+version:
+	@echo ${LATEST_VERSION}
+
+version-check:
+	source activate.sh && pipfreeze --version && [ "$$(pipfreeze --version)" = "${LATEST_TAG}" ]
 
 pip-versions:
 	docker-compose run --rm py3.8 ./scripts/versions.sh pip > references/pip-versions.txt
@@ -37,3 +44,5 @@ pip-checks:
 		./scripts/check-pip-versions.sh \
 		references/py3.8/pip-versions-supported.txt \
 		references/py2.7/001-requirements.txt
+
+cicd: test version-check
