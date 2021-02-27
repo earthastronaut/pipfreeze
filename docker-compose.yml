@@ -6,17 +6,17 @@ x-app: &x-app
     - ./:/app
 
 services:
-  app-test-py:
+  py:
     image: python:3
     command: ./scripts/run-tests-all.sh references/py3.8/*requirements.txt
     <<: *x-app
 
-  app-test-py3.8:
-    image: python:3.8-buster
+  py3.8:
+    image: python:3.8
     command: ./scripts/run-tests-all.sh references/py3.8/*requirements.txt
     <<: *x-app
 
-  app-test-py2.7.11:
+  py2.7:
     image: python:2.7
     command: ./scripts/run-tests-all.sh references/py2.7/*requirements.txt
     <<: *x-app
