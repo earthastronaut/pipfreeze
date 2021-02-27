@@ -35,7 +35,7 @@ test:
 
 # Run non-trival but simple
 start:
-	docker-compose run --rm py bash -c "pip install pandas matplotlib && ./pipfreeze.py"
+	docker-compose run py bash -c 'pip install pandas matplotlib . && pip freeze && echo "---" && pipfreeze'
 
 # Run bash shell
 bash:

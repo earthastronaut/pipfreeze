@@ -19,41 +19,35 @@ This format can be re-read by the typical `pip install -r requirements.txt` and 
 Typical `pip freeze` flattens all requirements, regardless of the dependency structure. 
 
 ``` bash
-astroid==2.4.2
-certifi==2020.12.5
-chardet==4.0.0
-idna==2.10
-isort==5.5.3
-lazy-object-proxy==1.4.3
-mccabe==0.6.1
-pylint==2.6.0
-requests==2.25.1
+cycler==0.10.0
+kiwisolver==1.3.1
+matplotlib==3.3.4
+numpy==1.20.1
+pandas==1.2.2
+Pillow==8.1.0
+pyparsing==2.4.7
+python-dateutil==2.8.1
+pytz==2021.1
 six==1.15.0
-toml==0.10.1
-urllib3==1.26.3
-wrapt==1.12.1
 ```
 
 This `pipfreeze` command produces output that is valid requirements.txt but is nested
 
 ``` bash
-pylint==2.6.0
-    astroid==2.4.2
-        # latest_version=1.5.2 wheel
-        lazy-object-proxy==1.4.3
+matplotlib==3.3.4
+    cycler==0.10.0
         six==1.15.0
-        wrapt==1.12.1
-    # latest_version=5.7.0 wheel
-    isort==5.5.3
-    mccabe==0.6.1
-    # latest_version=0.10.2 wheel
-    toml==0.10.1
-requests==2.25.1
-    certifi==2020.12.5
-    chardet==4.0.0
-    # latest_version=3.1 wheel
-    idna==2.10
-    urllib3==1.26.3
+    kiwisolver==1.3.1
+    numpy==1.20.1
+    Pillow==8.1.0
+    pyparsing==2.4.7
+    python-dateutil==2.8.1
+        # six==1.15.0
+pandas==1.2.2
+    # numpy==1.20.1
+    # python-dateutil==2.8.1
+        # six==1.15.0
+    pytz==2021.1
 ```
 
 ## Contributing
