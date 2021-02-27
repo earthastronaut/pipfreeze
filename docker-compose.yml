@@ -9,6 +9,7 @@ services:
   py:
     image: python:3
     command: ./scripts/run-tests-all.sh references/py3.8/*requirements.txt
+    # command: bash -c "pip install pandas matplotlib && ./pipfreeze.py"
     <<: *x-app
 
   py3.8:
