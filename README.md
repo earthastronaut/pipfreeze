@@ -6,10 +6,17 @@ Instead of a flat list of requirements, this indents requirements which are depe
 
 This format can be re-read by the typical `pip install -r requirements.txt` and requires not adjustment to other code. 
 
+## Installation
+
+`pip install pipfreeze`
+
+## Basic Usage
+
+`pipfreeze > requirements.txt`
 
 ## Motivation
 
-Typical pip freeze flattens all requirements, regardless of the dependency structure. 
+Typical `pip freeze` flattens all requirements, regardless of the dependency structure. 
 
 ``` bash
 astroid==2.4.2
@@ -27,7 +34,7 @@ urllib3==1.26.3
 wrapt==1.12.1
 ```
 
-This produces output that is valid requirements.txt but is nested
+This `pipfreeze` command produces output that is valid requirements.txt but is nested
 
 ``` bash
 pylint==2.6.0
