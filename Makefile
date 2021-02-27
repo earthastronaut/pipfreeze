@@ -1,12 +1,14 @@
 .PHONY: build build-local test
 
-build-local:
-	python3 -m venv .venv
-	pip install --upgrade pip setuptools
-	pip install -e .
+SHELL=/bin/bash
+
+build:
+	./activate.sh
+	docker-compose build
 
 test:
 	docker-compose up
 
 clean:
-	docker-compose down --remove-orphans
+	docker-compose down --rmi all --remove-orphans
+	rm -rf .venv || true
