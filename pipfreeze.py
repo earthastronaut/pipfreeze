@@ -21,7 +21,7 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 
-__version__ = "2.0.0"
+__version__ = "2.0.1"
 
 
 def call_split(cmd):
