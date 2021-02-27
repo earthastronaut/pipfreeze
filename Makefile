@@ -4,14 +4,20 @@ SHELL=/bin/bash
 LATEST_TAG=$(shell git describe --abbrev=0 --tags)
 
 build:
-	./activate.sh
-	docker-compose build
+	source activate.sh && python setup.py sdist bdist_wheel
 
 clean:
 	docker-compose down --rmi all --remove-orphans
 	rm -rf .venv || true
 	rm -rf *.egg-info || true
 	rm -rf __pycache__ || true
+	rm -rf dist || true
+	rm -rf build || true
+
+publish: version-check build
+	source activate.sh && twine check dist/*
+	# source activate.sh && twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+	source activate.sh && twine upload dist/*
 
 test:
 	docker-compose up

@@ -2,6 +2,10 @@
 **/output/*
 untracked*
 
+# Packaging
+build/*
+dist/*
+
 # Python
 __pycache__
 *.egg-info

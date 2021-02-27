@@ -11,7 +11,7 @@ This format can be re-read by the typical `pip install -r requirements.txt` and 
 
 Typical pip freeze flattens all requirements, regardless of the dependency structure. 
 
-```
+``` bash
 astroid==2.4.2
 certifi==2020.12.5
 chardet==4.0.0
@@ -29,7 +29,7 @@ wrapt==1.12.1
 
 This produces output that is valid requirements.txt but is nested
 
-```
+``` bash
 pylint==2.6.0
     astroid==2.4.2
         # latest_version=1.5.2 wheel

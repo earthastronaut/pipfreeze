@@ -24,11 +24,12 @@ setup(
     license='MIT',
     description=short_description,
     long_description=long_description,
+    long_description_content_type='text/markdown',
     py_modules=['pipfreeze'],
     entry_points={
         'console_scripts': ['pipfreeze = pipfreeze:cli']
     },
-    python_requires='>=3',
+    python_requires='>=2.7',
     classifiers=[
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
