@@ -7,17 +7,20 @@ LATEST_TAG=$(shell git describe --abbrev=0 --tags)
 build:
 	source activate.sh && python setup.py sdist bdist_wheel
 
+## Clean distribution
+clean-distribution:
+	rm -rf dist || true
+	rm -rf build || true
+
 # Clean distribution and other built objects
-clean:
+clean: clean-distribution
 	docker-compose down --rmi all --remove-orphans
 	rm -rf .venv || true
 	rm -rf *.egg-info || true
 	rm -rf __pycache__ || true
-	rm -rf dist || true
-	rm -rf build || true
 
 # Build and run checks
-pre-publish: version-check build
+pre-publish: clean-distribution version-check build
 	source activate.sh && twine check dist/*
 	# source activate.sh && twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 	tar tzf dist/pipfreeze-*.tar.gz
