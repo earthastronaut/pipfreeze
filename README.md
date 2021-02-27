@@ -48,3 +48,12 @@ requests==2.25.1
     idna==2.10
     urllib3==1.26.3
 ```
+
+## Contributing
+
+Local development is controlled through docker. `docker-compose.yml` contains
+different python environment containers to test this code out in.
+
+`make test` will run the docker tests.
+
+Makefile contains commands for development.

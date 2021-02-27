@@ -14,9 +14,12 @@ clean:
 	rm -rf dist || true
 	rm -rf build || true
 
-publish: version-check build
+pre-publish: version-check build
 	source activate.sh && twine check dist/*
 	# source activate.sh && twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+	tar tzf dist/pipfreeze-*.tar.gz
+
+publish: pre-publish
 	source activate.sh && twine upload dist/*
 
 test:
