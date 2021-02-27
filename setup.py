@@ -20,13 +20,13 @@ setup(
     version=version,
     author='Dylan Gregersen',
     author_email='an.email0101@gmail.com',
-    url='https://github.com/earthastronaut/storage',
+    url='https://github.com/earthastronaut/pipfreeze',
     license='MIT',
     description=short_description,
     long_description=long_description,
     py_modules=['pipfreeze'],
     entry_points={
-        'console_scripts': ['pipfreeze = pipfreeze:main']
+        'console_scripts': ['pipfreeze = pipfreeze:cli']
     },
     python_requires='>=3',
     classifiers=[
