@@ -40,11 +40,15 @@ bash:
 
 # Display version
 version:
-	@echo ${LATEST_VERSION}
+	@source activate.sh && pipfreeze --version
+
+# Create git tag from code pipfreeze.__version__
+version-tag: version
+	source activate.sh && git tag $$(pipfreeze --version)
 
 # Validate that git tag version matches code pipfreeze.__version__
-version-check:
-	source activate.sh && pipfreeze --version && [ "$$(pipfreeze --version)" = "${LATEST_TAG}" ]
+version-check: version
+	source activate.sh && [ "$$(pipfreeze --version)" = "${LATEST_TAG}" ]
 
 # Store and display versions of pip
 pip-versions:
